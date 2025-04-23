@@ -61,18 +61,14 @@ class SO100CubeLiftEnvCfg(SO100LiftEnvCfg):
         self.actions.gripper_action = mdp.BinaryJointPositionActionCfg(
             asset_name="robot",
             joint_names=["Gripper"],
-            open_command_expr={"Gripper": 0.7},  # Fully open
-            close_command_expr={"Gripper": 0.2}  # flly closed
+            open_command_expr={"Gripper": 0.5},  # Fully open
+            close_command_expr={"Gripper": 0.0}  # flly closed
         )
         
         # Set the body name for the end effector
         self.commands.object_pose.body_name = "Fixed_Gripper"
         # Disable debug visualization for the target pose command
         self.commands.object_pose.debug_vis = False
-
-        # Increase weights for object interactions to encourage gripper use
-        self.rewards.reaching_object.weight = 1.0  # Increase from 0.5
-        self.rewards.lifting_object.weight = 30.0  # Increase from 25.0
 
         # Set Cube as object
         self.scene.object = RigidObjectCfg(
@@ -103,13 +99,20 @@ class SO100CubeLiftEnvCfg(SO100LiftEnvCfg):
         }
         marker_cfg.prim_path = "/Visuals/FrameTransformer"
         
+        # Updated FrameTransformerCfg for alternate USD structure
         self.scene.ee_frame = FrameTransformerCfg(
-            prim_path="{ENV_REGEX_NS}/Robot/SO_100/SO_5DOF_ARM100_05d_SLDASM/Base",
+            # Original path in comments for reference
+            # prim_path="{ENV_REGEX_NS}/Robot/SO_100/SO_5DOF_ARM100_05d_SLDASM/Base",
+            # Updated path for the new USD structure
+            prim_path="{ENV_REGEX_NS}/Robot/Base",
             debug_vis=True,  # Enable visualization
             visualizer_cfg=marker_cfg,
             target_frames=[
                 FrameTransformerCfg.FrameCfg(
-                    prim_path="{ENV_REGEX_NS}/Robot/SO_100/SO_5DOF_ARM100_05d_SLDASM/Fixed_Gripper",
+                    # Original path in comments for reference
+                    # prim_path="{ENV_REGEX_NS}/Robot/SO_100/SO_5DOF_ARM100_05d_SLDASM/Fixed_Gripper",
+                    # Updated path for the new USD structure
+                    prim_path="{ENV_REGEX_NS}/Robot/Fixed_Gripper",
                     name="end_effector",
                     offset=OffsetCfg(
                         pos=(0.01, -0.0, 0.1),

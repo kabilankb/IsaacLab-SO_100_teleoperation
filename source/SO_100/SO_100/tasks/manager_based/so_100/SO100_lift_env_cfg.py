@@ -139,7 +139,7 @@ class RewardsCfg:
     """Reward terms for the MDP."""
 
     # Reaching reward with lower weight
-    reaching_object = RewTerm(func=mdp.object_ee_distance, params={"std": 0.05}, weight=0.5)
+    reaching_object = RewTerm(func=mdp.object_ee_distance, params={"std": 0.05}, weight=2)
 
     # Lifting reward with higher weight
     lifting_object = RewTerm(func=mdp.object_is_lifted, params={"minimal_height": 0.02}, weight=25.0)
@@ -166,34 +166,34 @@ class TerminationsCfg:
     )
 
 
-@configclass
+# @configclass
 class CurriculumCfg:
-    """Curriculum terms for the MDP."""
+#     """Curriculum terms for the MDP."""
 
-    # Stage 1: Focus on reaching
-    # Start with higher reaching reward, then gradually decrease it
-    reaching_reward = CurrTerm(
-        func=mdp.modify_reward_weight, 
-        params={"term_name": "reaching_object", "weight": 1.0, "num_steps": 6000}
-    )
+#     # Stage 1: Focus on reaching
+#     # Start with higher reaching reward, then gradually decrease it
+#     reaching_reward = CurrTerm(
+#         func=mdp.modify_reward_weight, 
+#         params={"term_name": "reaching_object", "weight": 1.0, "num_steps": 6000}
+#     )
 
-    # Stage 2: Transition to lifting
-    # Start with lower lifting reward, gradually increase to encourage lifting behavior
-    lifting_reward = CurrTerm(
-        func=mdp.modify_reward_weight, 
-        params={"term_name": "lifting_object", "weight": 35.0, "num_steps": 8000}
-    )
+#     # Stage 2: Transition to lifting
+#     # Start with lower lifting reward, gradually increase to encourage lifting behavior
+#     lifting_reward = CurrTerm(
+#         func=mdp.modify_reward_weight, 
+#         params={"term_name": "lifting_object", "weight": 35.0, "num_steps": 8000}
+#     )
 
     # Stage 4: Stabilize the policy
     # Gradually increase action penalties to encourage smoother, more stable movements
     action_rate = CurrTerm(
         func=mdp.modify_reward_weight, 
-        params={"term_name": "action_rate", "weight": -5e-4, "num_steps": 25000}
+        params={"term_name": "action_rate", "weight": -5e-4, "num_steps": 12000}
     )
 
     joint_vel = CurrTerm(
         func=mdp.modify_reward_weight, 
-        params={"term_name": "joint_vel", "weight": -5e-4, "num_steps": 25000}
+        params={"term_name": "joint_vel", "weight": -5e-4, "num_steps": 12000}
     )
 
 
