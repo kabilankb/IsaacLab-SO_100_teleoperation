@@ -1,48 +1,111 @@
-# Template for Isaac Lab Projects
+# Isaac Lab External Project Guide
 
 ## Overview
 
-This project/repository serves as a template for building projects or extensions based on Isaac Lab.
-It allows you to develop in an isolated environment, outside of the core Isaac Lab repository.
+This project is an external project for Isaac Lab that allows you to develop in an isolated environment, outside of the core Isaac Lab repository.
 
 **Key Features:**
+- `Isolation`: Work outside the core Isaac Lab repository, ensuring that your development efforts remain self-contained
+- `Flexibility`: This template is set up to allow your code to be run as an extension in Omniverse
 
-- `Isolation` Work outside the core Isaac Lab repository, ensuring that your development efforts remain self-contained.
-- `Flexibility` This template is set up to allow your code to be run as an extension in Omniverse.
+## Building Your Own Project or Task
+
+Traditionally, building new projects that utilize Isaac Lab's features required creating your own extensions within the Isaac Lab repository. However, this approach can obscure project visibility and complicate updates from one version of Isaac Lab to another. To circumvent these challenges, we now provide a command-line tool (template generator) for creating Isaac Lab-based projects and tasks.
+
+The template generator enables you to create:
+
+### External project (recommended)
+An isolated project that is not part of the Isaac Lab repository. This approach works outside of the core Isaac Lab repository, ensuring that your development efforts remain self-contained. Also, it allows your code to be run as an extension in Omniverse.
+
+> **Hint**: For the external project, the template generator will initialize a new Git repository in the specified directory. You can push the generated content to your own remote repository (e.g. GitHub) and share it with others.
+
+### Internal task
+A task that is part of the Isaac Lab repository. This approach should only be used to create new tasks within the Isaac Lab repository in order to contribute to it.
+
+## Installation Guide
+
+### Prerequisites
+1. Install Isaac Lab by following the [installation guide](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html).
+   We recommend using conda installation as it simplifies calling Python scripts from the terminal.
+
+### Running the Template Generator
+
+Run the following command to generate a new external project or internal task:
+
+**Linux**:
+```bash
+./isaaclab.sh --new  # or "./isaaclab.sh -n"
+```
+
+**Windows**:
+```bash
+isaaclab.bat --new  # or "isaaclab.bat -n"
+```
+
+The generator will guide you in setting up the project/task by asking about:
+- Type of project/task (external or internal)
+- Project/task path or names
+- Isaac Lab workflows
+- Reinforcement learning libraries and algorithms
+
+### External Project Usage
+
+Once the external project is generated:
+
+1. Install the project in editable mode:
+   ```bash
+   # Linux/Windows
+   python -m pip install -e source/<given-project-name>
+   ```
+
+2. List available tasks:
+   ```bash
+   # Linux/Windows
+   python scripts/list_envs.py
+   ```
+   > **Note**: If task names change, update the search pattern "Template-" in scripts/list_envs.py
+
+3. Run a task:
+   ```bash
+   # Linux/Windows
+   python scripts/<specific-rl-library>/train.py --task=<Task-Name>
+   ```
+
+### Internal Task Usage
+
+For internal tasks, once generated:
+
+1. List available tasks:
+   ```bash
+   # Linux/Windows
+   python scripts/environments/list_envs.py
+   ```
+
+2. Run a task:
+   ```bash
+   # Linux/Windows
+   python scripts/reinforcement_learning/<specific-rl-library>/train.py --task=<Task-Name>
+   ```
+
+3. Run with dummy agents (useful for environment configuration testing):
+   
+   Zero-action agent:
+   ```bash
+   # Linux/Windows
+   python scripts/zero_agent.py --task=<Task-Name>
+   ```
+
+   Random-action agent:
+   ```bash
+   # Linux/Windows
+   python scripts/random_agent.py --task=<Task-Name>
+   ```
+
+> **Note**: If Isaac Lab is not installed in a conda environment or in a (virtual) Python environment, use `FULL_PATH_TO_ISAACLAB/isaaclab.sh -p` (Linux) or `FULL_PATH_TO_ISAACLAB\isaaclab.bat -p` (Windows) instead of `python` for the commands above.
+
+## Keywords
 
 **Keywords:** extension, template, isaaclab
-
-## Installation
-
-- Install Isaac Lab by following the [installation guide](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html).
-  We recommend using the conda installation as it simplifies calling Python scripts from the terminal.
-
-- Clone or copy this project/repository separately from the Isaac Lab installation (i.e. outside the `IsaacLab` directory):
-
-- Using a python interpreter that has Isaac Lab installed, install the library in editable mode using:
-
-    ```bash
-    # use 'PATH_TO_isaaclab.sh|bat -p' instead of 'python' if Isaac Lab is not installed in Python venv or conda
-    python -m pip install -e source/SO_100
-
-- Verify that the extension is correctly installed by:
-
-    - Listing the available tasks:
-
-        Note: It the task name changes, it may be necessary to update the search pattern `"Template-"`
-        (in the `scripts/list_envs.py` file) so that it can be listed.
-
-        ```bash
-        # use 'FULL_PATH_TO_isaaclab.sh|bat -p' instead of 'python' if Isaac Lab is not installed in Python venv or conda
-        python scripts/list_envs.py
-        ```
-
-    - Running a task:
-
-        ```bash
-        # use 'FULL_PATH_TO_isaaclab.sh|bat -p' instead of 'python' if Isaac Lab is not installed in Python venv or conda
-        python scripts/<RL_LIBRARY>/train.py --task=<TASK_NAME>
-        ```
 
 ### Set up IDE (Optional)
 
