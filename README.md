@@ -6,7 +6,10 @@ This project is an external project for Isaac Lab that implements a cube lifting
 
 ## Installation
 
-1. Install this project in editable mode:
+1. Install Isaac Lab by following the [installation guide](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html).
+   We recommend using conda installation as it simplifies calling Python scripts from the terminal.
+
+2. Install this project in editable mode:
    ```bash
    python -m pip install -e source/SO_100
    ```
