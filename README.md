@@ -38,16 +38,16 @@ To accelerate training (more environments, no graphical interface):
 python scripts/skrl/train.py --task Template-So-100-CubeLift-v0 --num_envs 4096 --headless
 ```
 
-Training logs and checkpoints are saved under the `logs/skrl/SO100_lift/trained/` directory.
+Training logs and checkpoints will be saved under the `logs/skrl/SO100_lift/` directory.
 
 ### Play/Evaluate the Agent
 
-Run the best-performing policy found during training:
+Run a trained policy:
 ```bash
-python scripts/skrl/play.py --task Template-So-100-CubeLift-v0 --checkpoint logs/skrl/SO100_lift/trained/checkpoints/best_agent.pt
+python scripts/skrl/play.py --task Template-So-100-CubeLift-v0 --checkpoint logs/skrl/SO100_lift/<YOUR_RUN_DIR>/checkpoints/agent_<STEP>.pt
 ```
 
-> **Note**: Make sure to add `logs/skrl/SO100_lift/trained/` to your `.gitignore` file to avoid committing large training files.
+> **Note**: Make sure to add `logs/skrl/SO100_lift/` to your `.gitignore` file to avoid committing large training files.
 
 ## Building Your Own Project or Task
 
