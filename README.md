@@ -1,34 +1,45 @@
-# Isaac Lab External Project Guide
+# SO-100 Robot Cube Lifting Environment
 
 ## Overview
 
-This project is an external project for Isaac Lab that allows you to develop in an isolated environment, outside of the core Isaac Lab repository.
-
-**Key Features:**
-- `Isolation`: Work outside the core Isaac Lab repository, ensuring that your development efforts remain self-contained
-- `Flexibility`: This template is set up to allow your code to be run as an extension in Omniverse
+This project is an external project for Isaac Lab that implements a cube lifting task using the SO-100 robot arm. For more information about external projects in Isaac Lab, see the [documentation](https://isaac-sim.github.io/IsaacLab/main/source/overview/developer-guide/template.html).
 
 ## Installation
 
-1. Install Isaac Lab by following the [installation guide](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html).
-   We recommend using conda installation as it simplifies calling Python scripts from the terminal.
-
-2. Install this project in editable mode:
+1. Install this project in editable mode:
    ```bash
    python -m pip install -e source/SO_100
    ```
-   For more details about external projects, see the [Isaac Lab documentation](https://isaac-sim.github.io/IsaacLab/main/source/setup/external_projects.html).
 
 ## Usage
+(Ensure your Isaac Lab conda environment is activated before running these commands)
 
-### Training
-To train the agent:
+### List Available Tasks
+Verify that the SO-100 environment is registered:
 ```bash
-python scripts/skrl/train.py --task Template-So-100-CubeLift-v0
+python scripts/list_envs.py
+```
+You should see `Template-So-100-CubeLift-v0` in the output.
+
+### Train the Agent
+
+To watch training with a small number of environments:
+```bash
+# Training with visual feedback (32 environments)
+python scripts/skrl/train.py --task Template-So-100-CubeLift-v0 --num_envs 32
 ```
 
-### Playing
-To play with a trained agent:
+To accelerate training (more environments, no graphical interface):
+```bash
+# Headless training with more environments
+python scripts/skrl/train.py --task Template-So-100-CubeLift-v0 --num_envs 4096 --headless
+```
+
+Training logs and checkpoints are saved under the `logs/skrl/SO100_lift/trained/` directory.
+
+### Play/Evaluate the Agent
+
+Run the best-performing policy found during training:
 ```bash
 python scripts/skrl/play.py --task Template-So-100-CubeLift-v0 --checkpoint logs/skrl/SO100_lift/trained/checkpoints/best_agent.pt
 ```

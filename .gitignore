@@ -58,5 +58,8 @@ _build
 **/logs/*
 **/recordings/*
 
+# Training logs
+logs/skrl/SO100_lift/trained/
+
 # Pre-Trained Checkpoints
 /.pretrained_checkpoints/
