@@ -21,7 +21,7 @@ from isaaclab.assets.articulation import ArticulationCfg
 # Note: Use forward slashes for paths even on Windows
 # Construct the absolute path to the USD file relative to this script's location
 _THIS_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-SO100_USD_PATH = os.path.join(_THIS_SCRIPT_DIR, "asset", "TEST3.usd")
+SO100_USD_PATH = os.path.join(_THIS_SCRIPT_DIR, "asset", "so_100.usd")
 ##
 # Configuration
 ##

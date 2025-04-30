@@ -8,6 +8,33 @@ This project is an external project for Isaac Lab that allows you to develop in 
 - `Isolation`: Work outside the core Isaac Lab repository, ensuring that your development efforts remain self-contained
 - `Flexibility`: This template is set up to allow your code to be run as an extension in Omniverse
 
+## Installation
+
+1. Install Isaac Lab by following the [installation guide](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/index.html).
+   We recommend using conda installation as it simplifies calling Python scripts from the terminal.
+
+2. Install this project in editable mode:
+   ```bash
+   python -m pip install -e source/SO_100
+   ```
+   For more details about external projects, see the [Isaac Lab documentation](https://isaac-sim.github.io/IsaacLab/main/source/setup/external_projects.html).
+
+## Usage
+
+### Training
+To train the agent:
+```bash
+python scripts/skrl/train.py --task Template-So-100-CubeLift-v0
+```
+
+### Playing
+To play with a trained agent:
+```bash
+python scripts/skrl/play.py --task Template-So-100-CubeLift-v0 --checkpoint logs/skrl/SO100_lift/trained/checkpoints/best_agent.pt
+```
+
+> **Note**: Make sure to add `logs/skrl/SO100_lift/trained/` to your `.gitignore` file to avoid committing large training files.
+
 ## Building Your Own Project or Task
 
 Traditionally, building new projects that utilize Isaac Lab's features required creating your own extensions within the Isaac Lab repository. However, this approach can obscure project visibility and complicate updates from one version of Isaac Lab to another. To circumvent these challenges, we now provide a command-line tool (template generator) for creating Isaac Lab-based projects and tasks.

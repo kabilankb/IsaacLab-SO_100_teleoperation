@@ -16,15 +16,15 @@ from isaaclab.utils.assets import ISAAC_NUCLEUS_DIR
 import isaaclab.sim as sim_utils  # For the debug visualization
 from isaaclab.managers import RewardTermCfg as RewTerm
 from isaaclab.managers import SceneEntityCfg
-
 from isaaclab_tasks.manager_based.manipulation.lift import mdp
-from .SO100_lift_env_cfg import SO100LiftEnvCfg
+
+from .so_100_base_env_cfg import SO100LiftEnvCfg
+from .so_100_robot_cfg import SO100_CFG  # isort: skip
 
 ##
 # Pre-defined configs
 ##
 from isaaclab.markers.config import FRAME_MARKER_CFG  # isort: skip
-from .Livestream_SO100 import SO100_CFG  # Corrected import # isort: skip
 # from .SO100 import SO100_CFG  # Corrected import # isort: skip
 
 
