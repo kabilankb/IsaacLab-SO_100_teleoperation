@@ -7,7 +7,7 @@
 
 ---
 
-
+![Image](https://github.com/user-attachments/assets/cfffa2d1-c61a-4b8e-ba0e-650fb46cdc9f)
 
 ## 🧠 Why Teleoperate?
 
