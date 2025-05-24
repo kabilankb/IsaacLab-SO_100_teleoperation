@@ -58,5 +58,3 @@ Ready for use in:
 Use teleoperation in Isaac Lab to collect expert demonstrations and kickstart policy training — all within a scalable simulation framework.
 
 ---
-
-Let me know if you'd like a downloadable `.md` version.
